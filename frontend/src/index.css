@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #0A0A0C;
+    --bg-card: rgba(18, 20, 26, 0.7);
+    --border-card: rgba(255, 255, 255, 0.08);
+    --accent-orange: #FF5722;
+    --accent-orange-hover: #E64A19;
+    --accent-glow: rgba(255, 87, 34, 0.35);
+    --text-main: #FFFFFF;
+    --text-muted: #94A3B8;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0c;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF5722;
+}
+
+/* Custom Utilities */
+.glass-panel {
+  background: rgba(18, 20, 28, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(255, 87, 34, 0.4);
+  box-shadow: 0 12px 40px 0 rgba(255, 87, 34, 0.15);
+  transform: translateY(-4px);
+}
+
+.orange-glow {
+  box-shadow: 0 0 35px var(--accent-glow);
+}
+
+.orange-text-glow {
+  text-shadow: 0 0 20px rgba(255, 87, 34, 0.6);
+}
+
+.font-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Signature Font Fallback */
+.font-signature {
+  font-family: 'Caveat', 'Brush Script MT', cursive;
+}
+
+/* Angled orange outline frame for Gourab photo */
+.angled-orange-border {
+  position: relative;
+}
+
+.angled-orange-border::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 2px solid #FF5722;
+  transform: rotate(-3deg);
+  border-radius: 16px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Glow Background Orbs */
+.bg-glow-orb {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,87,34,0.15) 0%, rgba(0,0,0,0) 70%);
+  pointer-events: none;
+  border-radius: 50%;
+}

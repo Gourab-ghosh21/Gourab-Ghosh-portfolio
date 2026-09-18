@@ -1,0 +1,14 @@
+{
+  "name": "gourab-ghosh-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gourab Ghosh Portfolio - Full-stack Developer Portfolio",
+  "scripts": {
+    "dev": "node dev.js",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "start": "node dev.js",
+    "build": "npm run build --prefix frontend",
+    "install:all": "npm install --prefix frontend && npm install --prefix backend"
+  }
+}
