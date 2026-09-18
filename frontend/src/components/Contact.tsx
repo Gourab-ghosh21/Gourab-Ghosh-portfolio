@@ -24,12 +24,14 @@ export const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setIsSubmitting(true);
 
-    const apiUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5001').replace(/\/$/, '');
+    const apiUrl = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+    const endpoint = apiUrl ? `${apiUrl}/api/contact` : '/api/contact';
 
     try {
-      const res = await fetch(`${apiUrl}/api/contact`, {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,9 +39,9 @@ export const Contact: React.FC = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
 
-      if (res.ok && data.success) {
+      if (res.ok && data.success === true) {
         setFeedbackState({
           open: true,
           success: true,
@@ -48,11 +50,15 @@ export const Contact: React.FC = () => {
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
+        const errorMsg =
+          data.message ||
+          (data.errors && data.errors[0]?.message) ||
+          'Unable to send your message. Please try again or reach out directly.';
         setFeedbackState({
           open: true,
           success: false,
           title: 'Unable to send message',
-          message: data.message || 'Unable to send your message. Please try again.',
+          message: errorMsg,
         });
       }
     } catch (error) {
@@ -60,7 +66,7 @@ export const Contact: React.FC = () => {
         open: true,
         success: false,
         title: 'Unable to send message',
-        message: 'Unable to send your message. Please check your connection or open your mail client directly.',
+        message: 'Unable to send your message. Please check your connection or reach out directly via email.',
       });
     } finally {
       setIsSubmitting(false);
