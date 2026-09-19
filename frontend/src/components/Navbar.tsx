@@ -54,14 +54,18 @@ export const Navbar: React.FC = () => {
           {/* Logo */}
           <a
             href="#home"
-            className="flex items-center gap-2 group text-xl font-bold tracking-wider"
+            className="flex items-center group transition-transform duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#FF5722] focus:ring-offset-2 focus:ring-offset-[#0A0A0C] rounded-lg"
+            aria-label="Gourab Ghosh - Software Developer"
           >
-            <span className="text-[#FF5722] font-code font-extrabold group-hover:scale-110 transition-transform">
-              &lt;/&gt;
-            </span>
-            <span className="text-white tracking-widest font-extrabold text-lg">
-              GOURAB GHOSH
-            </span>
+            <img
+              src="/images/gourab-ghosh-logo.png"
+              alt="Gourab Ghosh - Software Developer"
+              className="h-11 sm:h-12 md:h-[52px] w-auto object-contain select-none"
+              width={525}
+              height={475}
+              loading="eager"
+              decoding="async"
+            />
           </a>
 
           {/* Desktop Navigation Links */}
